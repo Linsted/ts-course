@@ -18,7 +18,11 @@ export default function CourseGoalList({
   let warningBox;
 
   if (goals.length > 3) {
-    warningBox = <InfoBox mode="warning">You have too many goals!</InfoBox>;
+    warningBox = (
+      <InfoBox options="low" mode="warning">
+        You have too many goals!
+      </InfoBox>
+    );
   }
 
   return (

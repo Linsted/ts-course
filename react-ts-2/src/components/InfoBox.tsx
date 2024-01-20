@@ -1,17 +1,25 @@
-type InfoBoxProps = {
-  mode: "hint" | "warning";
+type HintBoxProps = {
+  mode: "hint";
   children: React.ReactNode;
 };
 
-const InfoBox = ({ mode, children }: InfoBoxProps) => {
-  if (mode === "hint") {
-    return <aside className="infobox infobox-hint">{children}</aside>;
+type WorningBoxProps = {
+  mode: "warning";
+  children: React.ReactNode;
+  options: "low" | "medium" | "high";
+};
+
+type InfoBoxProps = HintBoxProps | WorningBoxProps;
+
+const InfoBox = (props: InfoBoxProps) => {
+  if (props.mode === "hint") {
+    return <aside className="infobox infobox-hint">{props.children}</aside>;
   }
 
   return (
-    <aside className="infobox infobox-warning warning--high">
+    <aside className={`infobox infobox-warning warning--${props.options}`}>
       <h2>Warning!</h2>
-      {children}
+      {props.children}
     </aside>
   );
 };
